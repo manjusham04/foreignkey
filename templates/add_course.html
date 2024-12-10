@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Course{% endblock %}
+{% load static %}
+{% block style %}
+<style>
+    /* Full-page background styling */
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-image: url("{% static 'images/download1.jpg' %}"); /* Replace with your actual image path */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+
+    /* Form container styling */
+    .form-container {
+        background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px; /* Compact form */
+    }
+
+    h2 {
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    input {
+        padding: 8px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        width: 100%; /* Full-width inputs */
+    }
+
+    .btn-submit {
+        background-color: #28a745; /* Green button */
+        color: white;
+        font-size: 1rem;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: #218838;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add Course</h2>
+    <form method="post" action="{% url 'add_coursedb' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="courseName" class="form-label">Course Name</label>
+            <input type="text" class="form-control" id="courseName" name="course_name" placeholder="e.g., Python Programming" required>
+        </div>
+        <div class="mb-3">
+            <label for="courseFee" class="form-label">Course Fee</label>
+            <input type="number" class="form-control" id="courseFee" name="fee" placeholder="e.g., 5000" required>
+        </div>
+        <button type="submit" class="btn-submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Details{% endblock %}
+{% load static %}
+{% block content %}
+<style>
+  body {
+    background-image: url("{% static 'images/download3.jpg' %}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-color: #3ea4cc; */
+    padding-top: 20px;
+  }
+  .table-container {
+    margin-top: 30px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .table th {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+  }
+  .table td, .table th {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .action-links a {
+    margin: 0 5px;
+    text-decoration: none;
+  }
+  .action-links a:hover {
+    text-decoration: underline;
+  }
+  .no-data {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+
+<div class="container table-container">
+  <h2 class="text-center">Student Details</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Email Address</th>
+        <th>Age</th>
+        <th>Joining Date</th>
+        <th>Course</th>
+        <th>Course Fee</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+        <tr>
+          <td>{{ s.student_name }}</td>
+          <td>{{ s.student_address }}</td>
+          <td>{{ s.student_age }}</td>
+          <td>{{ s.joining_date }}</td>
+          <td>{{ s.course.course_name }}</td>
+          <td>{{ s.course.fee }}</td>
+          <td class="action-links">
+            <a href="{% url 'edit_student' s.id %}" class="text-primary">Edit</a>
+            <a href="{% url 'delete_student' s.id %}" class="text-danger">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7" class="no-data">No students found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

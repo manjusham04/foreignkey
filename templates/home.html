@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% load static %}
+{% block style %}
+<style>
+  .home-container {
+    background-image: url("{% static 'images/download.jpg' %}"); /* Replace with your actual image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .text-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="home-container">
+  <div class="text-content text-center">
+    <h1 class="display-4">Welcome to Course Management</h1>
+    <p class="lead">Easily manage your courses and students with our simple and user-friendly interface.</p>
+    <a href="{% url 'course' %}" class="btn btn-primary btn-lg mt-4">Get Started</a>
+  </div>
+</div>
+{% endblock %}
